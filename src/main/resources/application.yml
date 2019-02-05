@@ -1,3 +1,8 @@
+server:
+  error:
+    whitelabel:
+      enabled: false
+
 spring:
   datasource:
     url:      jdbc:postgresql://localhost/spock_sandbox
@@ -5,8 +10,16 @@ spring:
     password: p@ssw0rd
     hikari:
       driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            # see https://stackoverflow.com/questions/49110818/method-org-postgresql-jdbc-pgconnection-createclob-is-not-yet-implemented?noredirect=1&lq=1
+            non_contextual_creation: true
 
 mybatis:
   mapper-locations: classpath:mybatis/sql/**/*.xml
   configuration:
     map-underscore-to-camel-case: true
+

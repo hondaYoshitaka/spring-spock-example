@@ -13,7 +13,7 @@ public interface XXXRepository {
     XXX findOne(@Param("id") Long id);
 
     List<XXX> findAllByCategory(@Param("categoryId") Long categoryId,
-                                @Param("price") Long price,
+                                @Param("price") Integer price,
                                 Pageable pageable);
 
     void insertOne(@Param("entity") XXX entity);
