@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.github.hondaYoshitaka.repository.XXXRepository">
+
+    <select id="findOne" resultType="com.github.hondaYoshitaka.model.entity.XXX">
+        SELECT * FROM xxx WHERE id = #{id}
+    </select>
+
+    <select id="findAllByCategory" resultType="com.github.hondaYoshitaka.model.entity.XXX">
+        SELECT *
+
+        FROM xxx
+
+        WHERE
+          category_id = #{categoryId}
+
+          <if test="price != null">
+            AND price = #{price}
+          </if>
+
+        ORDER BY id ASC
+    </select>
+
+    <insert id="insertOne" parameterType="com.github.hondaYoshitaka.model.entity.XXX">
+        INSERT INTO xxx (
+            id,
+            name,
+            categoryId,
+            price,
+            active
+        ) VALUES (
+            #{id},
+            #{name},
+            #{categoryId},
+            #{price},
+            #{active}
+        );
+    </insert>
+</mapper>

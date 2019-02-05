@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url:      jdbc:postgresql://localhost/spock_sandbox
+    username: spock_sandbox
+    password: p@ssw0rd
+    hikari:
+      driver-class-name: org.postgresql.Driver
+
+mybatis:
+  mapper-locations: classpath:mybatis/sql/**/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
