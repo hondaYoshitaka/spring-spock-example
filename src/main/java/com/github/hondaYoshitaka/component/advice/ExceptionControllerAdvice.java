@@ -251,10 +251,19 @@ public class ExceptionControllerAdvice extends ResponseEntityExceptionHandler {
                                     HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    /**
+     * @param message エラーメッセージ
+     * @return response dto
+     */
     private static ErrorResponseDto createErrorResponseDto(final String message) {
         return createErrorResponseDto(message, Collections.emptyList());
     }
 
+    /**
+     * @param message エラーメッセージ
+     * @param errors  詳細なエラー
+     * @return response dto
+     */
     private static ErrorResponseDto createErrorResponseDto(final String message,
                                                            final List<ErrorDto> errors) {
         return ErrorResponseDto.builder()
