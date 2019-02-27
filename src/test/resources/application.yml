@@ -1,4 +1,4 @@
 spring:
   profiles:
     include:  base
-    active:   local
+    active:   test
