@@ -3,7 +3,7 @@ package com.github.hondaYoshitaka.repository;
 import com.github.hondaYoshitaka.model.entity.XXX;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.springframework.data.domain.Pageable;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ public interface XXXRepository {
 
     List<XXX> findAllByCategory(@Param("categoryId") Long categoryId,
                                 @Param("price") Integer price,
-                                Pageable pageable);
+                                RowBounds rowBounds);
 
     void insertOne(@Param("entity") XXX entity);
 }
