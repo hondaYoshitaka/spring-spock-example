@@ -13,28 +13,26 @@
         FROM xxx
 
         WHERE
-          category_id = #{categoryId}
+        category_id = #{categoryId}
 
-          <if test="price != null">
+        <if test="price != null">
             AND price = #{price}
-          </if>
+        </if>
 
         ORDER BY id ASC
     </select>
 
     <insert id="insertOne" parameterType="com.github.hondaYoshitaka.model.entity.XXX">
         INSERT INTO xxx (
-            id,
             name,
-            categoryId,
+            category_Id,
             price,
             active
         ) VALUES (
-            #{id},
-            #{name},
-            #{categoryId},
-            #{price},
-            #{active}
+            #{entity.name},
+            #{entity.categoryId},
+            #{entity.price},
+            #{entity.active}
         );
     </insert>
 </mapper>
