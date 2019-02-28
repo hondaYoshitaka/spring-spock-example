@@ -11,6 +11,11 @@ import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * xxxに関するcontrollerクラス.
+ *
+ * @author hondaYoshitaka
+ */
 @RestController
 @RequestMapping(value = "api", produces = {MediaType.APPLICATION_JSON_VALUE})
 public class XXXController {

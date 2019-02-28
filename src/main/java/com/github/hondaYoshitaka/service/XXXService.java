@@ -14,6 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.stream.Collectors;
 
+/**
+ * xxxに関するserviceクラス.
+ *
+ * @author hondaYoshitaka
+ */
 @Service
 @Transactional(readOnly = true)
 public class XXXService {
@@ -25,8 +30,10 @@ public class XXXService {
     }
 
     /**
-     * @param id
-     * @return
+     * xxxを取得します.
+     *
+     * @param id xxxID
+     * @return response dto
      */
     public XXXFetchResponseDto fetchOne(final Long id) {
         final var entity = xxxRepository.findOne(id);
@@ -42,10 +49,12 @@ public class XXXService {
     }
 
     /**
-     * @param categoryId
-     * @param price
-     * @param pageable
-     * @return
+     * 一致するxxxをすべて取得します.
+     *
+     * @param categoryId カテゴリID
+     * @param price      価格
+     * @param pageable   ページング
+     * @return response dto
      */
     public XXXsFetchResponseDto fetchAll(final Long categoryId,
                                          final Integer price,
@@ -56,7 +65,7 @@ public class XXXService {
                                                              price,
                                                              rowBounds);
         final var dtos = entities.stream()
-                                 .map(XXXService::mapXxxDto)
+                                 .map(XXXService::createXXXDto)
                                  .collect(Collectors.toList());
 
         return XXXsFetchResponseDto.builder()
@@ -65,10 +74,12 @@ public class XXXService {
     }
 
     /**
-     * @param name
-     * @param categoryId
-     * @param price
-     * @return
+     * xxxを登録します.
+     *
+     * @param name       名称
+     * @param categoryId カテゴリID
+     * @param price      価格
+     * @return response dto
      */
     @Transactional
     public XXXPostResponseDto postOne(final String name,
@@ -90,10 +101,12 @@ public class XXXService {
     }
 
     /**
-     * @param entity
-     * @return
+     * xxx dtoを作成します.
+     *
+     * @param entity xxx
+     * @return dto
      */
-    private static XXXDto mapXxxDto(final XXX entity) {
+    private static XXXDto createXXXDto(final XXX entity) {
         return XXXDto.builder()
                      .id(entity.getId())
                      .name(entity.getName())
