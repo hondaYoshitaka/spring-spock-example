@@ -1,28 +1,27 @@
 package com.github.hondaYoshitaka.repository
 
+import com.github.hondaYoshitaka.configuration.DatabaseConfiguration
 import com.github.hondaYoshitaka.model.entity.XXX
+import com.yo1000.dbspock.Tables
+import com.yo1000.dbspock.dbunit.DbspockExpectations
 import com.yo1000.dbspock.dbunit.DbspockLoaders
 import org.apache.ibatis.session.RowBounds
 import org.dbunit.DataSourceDatabaseTester
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.context.annotation.Import
 import spock.lang.Specification
 import spock.lang.Unroll
 
-import javax.sql.DataSource
-
 @MybatisTest
+@Import([DatabaseConfiguration])
 @Unroll
 class XXXRepositoryTest extends Specification {
     @Autowired
     XXXRepository xxxRepository
 
-    DataSourceDatabaseTester tester
-
     @Autowired
-    def setTester(DataSource dataSource) {
-        this.tester = new DataSourceDatabaseTester(dataSource)
-    }
+    DataSourceDatabaseTester tester
 
     def "1件取得_id:#keyのレコードが存在する場合、想定のフィールド値が取得できること"() {
         given:
@@ -130,7 +129,26 @@ class XXXRepositoryTest extends Specification {
         5      | 3     || []
     }
 
-    // TODO: 登録のテストケース
+    def "1件登録_"() {
+        given:
+        def entity = new XXX(name: _name, categoryId: _categoryId, price: _price, active: _active)
+
+        when:
+        xxxRepository.insertOne(entity)
+
+        then:
+        // TODO: dbspockの使用を見直す
+        DbspockExpectations.matches(tester.connection, {
+            xxx {
+                name | category_id | price | active
+                'name 0' | 1 | 100 | true
+            }
+        } as Closure<Tables>)
+
+        where:
+        _name    | _categoryId | _price | _active || _
+        'name 0' | 1L          | 100    | true    || _
+    }
 
     /**
      * databaseレコードをセットアップします.
