@@ -22,6 +22,9 @@
         <postgres.version>42.2.0</postgres.version>
         <logback.version>1.2.3</logback.version>
         <guava.version>27.0.1-jre</guava.version>
+
+        <dbunit.version>2.6.0</dbunit.version>
+        <dbspock.version>2.3.0.RELEASE</dbspock.version>
     </properties>
 
     <build>
@@ -148,19 +151,19 @@
         <dependency>
             <groupId>org.dbunit</groupId>
             <artifactId>dbunit</artifactId>
-            <version>2.6.0</version>
+            <version>${dbunit.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.yo1000</groupId>
             <artifactId>dbspock-core</artifactId>
-            <version>2.3.0.RELEASE</version>
+            <version>${dbspock.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>com.yo1000</groupId>
             <artifactId>dbspock-dbunit</artifactId>
-            <version>2.3.0.RELEASE</version>
+            <version>${dbspock.version}</version>
             <scope>test</scope>
         </dependency>
 
