@@ -45,7 +45,7 @@ public class XXXController {
 
     @PostMapping("xxx")
     public XXXPostResponseDto postXXX(
-            @RequestBody final XXXPostForm form
+            @RequestBody @Validated final XXXPostForm form
     ) {
         return xxxService.postOne(form.getName(),
                                   form.getCategoryId(),
