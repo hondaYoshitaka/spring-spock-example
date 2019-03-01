@@ -1,6 +1,6 @@
 package com.github.hondaYoshitaka.controller;
 
-import com.github.hondaYoshitaka.model.form.XXXFetchForm;
+import com.github.hondaYoshitaka.model.form.XXXsFetchForm;
 import com.github.hondaYoshitaka.model.form.XXXPostForm;
 import com.github.hondaYoshitaka.model.response.XXXFetchResponseDto;
 import com.github.hondaYoshitaka.model.response.XXXPostResponseDto;
@@ -35,7 +35,7 @@ public class XXXController {
 
     @GetMapping("xxx")
     public XXXsFetchResponseDto fetchXXXs(
-            @ModelAttribute @Validated final XXXFetchForm form,
+            @ModelAttribute @Validated final XXXsFetchForm form,
             final Pageable pageable
     ) {
         return xxxService.fetchAll(form.getCategoryId(),

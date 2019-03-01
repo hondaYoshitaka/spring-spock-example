@@ -7,7 +7,7 @@ import org.hibernate.validator.constraints.Range;
 import javax.validation.constraints.NotNull;
 
 @Data
-public class XXXFetchForm {
+public class XXXsFetchForm {
     @NotNull
     @Length(max = 255)
     private String name;
