@@ -4,11 +4,12 @@ import lombok.Data;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.Range;
 
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Data
 public class XXXPostForm {
-    @NotNull
+    @NotBlank
     @Length(max = 255)
     private String name;
 
