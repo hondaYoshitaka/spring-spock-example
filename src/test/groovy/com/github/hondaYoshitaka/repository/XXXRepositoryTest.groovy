@@ -1,8 +1,7 @@
 package com.github.hondaYoshitaka.repository
 
-import com.github.hondaYoshitaka.configuration.DatabaseConfiguration
+import com.github.hondaYoshitaka.configuration.DataSourceConfiguration
 import com.github.hondaYoshitaka.model.entity.XXX
-import com.yo1000.dbspock.Tables
 import com.yo1000.dbspock.dbunit.DbspockExpectations
 import com.yo1000.dbspock.dbunit.DbspockLoaders
 import org.apache.ibatis.session.RowBounds
@@ -14,7 +13,7 @@ import spock.lang.Specification
 import spock.lang.Unroll
 
 @MybatisTest
-@Import([DatabaseConfiguration])
+@Import([DataSourceConfiguration])
 @Unroll
 class XXXRepositoryTest extends Specification {
     @Autowired
@@ -129,7 +128,7 @@ class XXXRepositoryTest extends Specification {
         5      | 3     || []
     }
 
-    def "1件登録_"() {
+    def "1件登録_エンティティの各項目が正しく登録されること"() {
         given:
         def entity = new XXX(name: _name, categoryId: _categoryId, price: _price, active: _active)
 
@@ -137,13 +136,12 @@ class XXXRepositoryTest extends Specification {
         xxxRepository.insertOne(entity)
 
         then:
-        // TODO: dbspockの使用を見直す
         DbspockExpectations.matches(tester.connection, {
             xxx {
                 name | category_id | price | active
                 'name 0' | 1 | 100 | true
             }
-        } as Closure<Tables>)
+        })
 
         where:
         _name    | _categoryId | _price | _active || _
