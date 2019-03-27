@@ -1,11 +1,12 @@
 package com.github.hondaYoshitaka.controller;
 
-import com.github.hondaYoshitaka.model.form.XXXsFetchForm;
 import com.github.hondaYoshitaka.model.form.XXXPostForm;
+import com.github.hondaYoshitaka.model.form.XXXsFetchForm;
 import com.github.hondaYoshitaka.model.response.XXXFetchResponseDto;
 import com.github.hondaYoshitaka.model.response.XXXPostResponseDto;
 import com.github.hondaYoshitaka.model.response.XXXsFetchResponseDto;
 import com.github.hondaYoshitaka.service.XXXService;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.validation.annotation.Validated;
@@ -34,6 +35,7 @@ public class XXXController {
     }
 
     @GetMapping("xxx")
+    @ApiOperation("xxxを1件取得する")
     public XXXsFetchResponseDto fetchXXXs(
             @ModelAttribute @Validated final XXXsFetchForm form,
             final Pageable pageable
@@ -44,6 +46,7 @@ public class XXXController {
     }
 
     @PostMapping("xxx")
+    @ApiOperation("xxxを1件登録する")
     public XXXPostResponseDto postXXX(
             @RequestBody @Validated final XXXPostForm form
     ) {
